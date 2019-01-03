@@ -7,7 +7,8 @@ namespace AutenticacaoAspNet.Models
 {
     public enum TipoUsuario
     {
+        Padrao,
         Administrador,
-        Padrao
+        CadastroUsuario //Criado para fazer o controle de acesso via "AutenticacaoAspNet.FiltersAcesso"
     }
 }

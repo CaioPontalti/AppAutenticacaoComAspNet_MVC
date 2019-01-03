@@ -95,8 +95,9 @@ namespace AutenticacaoAspNet.Controllers
             var identity = new ClaimsIdentity(new[]
             {
                 new Claim(ClaimTypes.Name, usuario.Nome), //primeiro parametro é um string. Pode ser tanto 
-                new Claim("Login", usuario.Login)         // através do ClaimTypes ou colocar o nome direto.
-            },  "ApplicationCookie"); //=> está no arquivo Startup
+                new Claim("Login", usuario.Login),         // através do ClaimTypes ou colocar o nome direto.
+                new Claim(ClaimTypes.Role, usuario.TipoUsuario.ToString())  // ClaimTypes.Role => Define o papel do usuário dentro da aplic. Permissões.
+            },  "ApplicationCookie"); //=> está no arquivo Startup -- guarda as informações do usuário quando ele faz o login.
 
             Request.GetOwinContext().Authentication.SignIn(identity); //=> identity populado anteriormente.
 

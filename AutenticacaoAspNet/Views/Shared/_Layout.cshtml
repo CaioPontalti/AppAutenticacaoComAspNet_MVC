@@ -21,17 +21,22 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    
+
+                    @*Verifica qual o Role (papel/permissões) do usuário na aplicação para montar a exibição do menu.*@
+                    @if (User.IsInRole("Administrador")) // enum TipoUsuario
+                    {
+                        <li>@Html.ActionLink("Cadastro de Usuários", "Index", "CadastroUsuarios")</li>
+                    }
+
                     @*Verifica se o usuário está logado. Se estiver busca o nome (Name) dele no Identity que é preenchido no
-                    Claim(Controller), se não estiver logado mostra as opções
-                        ]de Login e Cadastro.*@
+                    Claim(Controller), se não estiver logado mostra as opções de Login e Cadastro.*@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">@User.Identity.Name<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Alterar Senha", "AlterarSenha","Perfil")</li>
-                                <li>@Html.ActionLink("Sair", "Logout", "Autenticacao")</li>         
+                                <li>@Html.ActionLink("Alterar Senha", "AlterarSenha", "Perfil")</li>
+                                <li>@Html.ActionLink("Sair", "Logout", "Autenticacao")</li>
                             </ul>
                         </li>
                     }

@@ -12,6 +12,10 @@ namespace AutenticacaoAspNet.Controllers
         [Authorize] //Permite apenas usuários logados acessem a página
         public ActionResult Index()
         {
+            if (User.IsInRole("Padrao"))
+            {
+                ViewBag.MensagemTipoUsuario = "Você é usuário padrão!";
+            }
             return View();
         }
 
